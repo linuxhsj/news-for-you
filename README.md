@@ -173,10 +173,9 @@ cp .env.example .env
 ### Dependencies
 
 - Python 3.10+
-- feedparser
 
 ```bash
-pip install feedparser
+pip install -r requirements.txt
 ```
 
 ---
@@ -350,10 +349,9 @@ cp .env.example .env
 ### 依赖
 
 - Python 3.10+
-- feedparser
 
 ```bash
-pip install feedparser
+pip install -r requirements.txt
 ```
 
 ## License
