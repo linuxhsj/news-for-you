@@ -1,0 +1,69 @@
+{
+  "hours": 24,
+  "fallback_hours": 48,
+  "max_items": 10,
+  "timeout": 25,
+  "proxy": "",
+  "cache_path": "/tmp/rss-cache.json",
+  "sources": {
+    "OpenAI": "https://openai.com/blog/rss.xml",
+    "Anthropic": "https://www.anthropic.com/news",
+    "Google DeepMind": "https://deepmind.google/blog/rss.xml",
+    "GitHub Blog": "https://github.blog/feed/",
+    "Hugging Face": "https://huggingface.co/blog/feed.xml",
+    "arXiv AI": "http://export.arxiv.org/api/query?search_query=cat:cs.AI&sortBy=submittedDate&sortOrder=descending&max_results=15",
+    "arXiv ML": "http://export.arxiv.org/api/query?search_query=cat:cs.LG&sortBy=submittedDate&sortOrder=descending&max_results=10",
+    "arXiv CV": "http://export.arxiv.org/api/query?search_query=cat:cs.CV&sortBy=submittedDate&sortOrder=descending&max_results=10",
+    "arXiv CL": "http://export.arxiv.org/api/query?search_query=cat:cs.CL&sortBy=submittedDate&sortOrder=descending&max_results=10",
+    "TechCrunch AI": "https://techcrunch.com/category/artificial-intelligence/feed/",
+    "机器之心": "https://www.jiqizhixin.com/rss",
+    "Hacker News": "https://news.ycombinator.com/rss",
+    "36氪": "https://36kr.com/feed",
+    "虎嗅": "https://www.huxiu.com/rss/0.xml",
+    "IT之家": "https://www.ithome.com/rss/",
+    "少数派": "https://sspai.com/feed",
+    "爱范儿": "https://www.ifanr.com/feed"
+  },
+  "include_keywords": [
+    "AI", "LLM", "大模型", "多模态", "multimodal", "智能体", "agent",
+    "machine learning", "deep learning", "transformer", "attention", "diffusion",
+    "端侧", "on-device", "edge AI", "programming", "copilot", "assistant",
+    "RAG", "retrieval", "embedding", "向量数据库", "fine-tuning", "prompt engineering",
+    "vision", "speech", "VLM", "VLA", "ASR", "TTS", "reinforcement learning",
+    "Claude", "GPT", "Gemini", "Llama", "Qwen", "通义", "幻觉", "alignment",
+    "autonomous", "robotics"
+  ],
+  "exclude_keywords": [
+    "融资", "IPO", "投资", "收购", "merger",
+    "招聘", "求职", "面试",
+    "峰会", "会议", "活动", "Meetup",
+    "Super Bowl", "NFL", "体育",
+    "娱乐", "八卦", "明星", "politics", "政治", "crypto", "加密货币",
+    "gaming", "游戏", "celebrity"
+  ],
+  "hot_keywords": [
+    "Claude", "GPT-5", "GPT-4.5", "OpenAI", "Anthropic", "Gemini",
+    "发布", "launch", "release", "announce",
+    "开源", "open source", "突破", "breakthrough", "SOTA",
+    "vulnerability", "安全漏洞"
+  ],
+  "source_weights": {
+    "OpenAI": 3.0,
+    "Anthropic": 3.0,
+    "Google DeepMind": 2.5,
+    "Hugging Face": 2.0,
+    "GitHub Blog": 1.6,
+    "arXiv AI": 1.4,
+    "arXiv ML": 1.4,
+    "arXiv CV": 1.4,
+    "arXiv CL": 1.4,
+    "TechCrunch AI": 1.2,
+    "机器之心": 1.2,
+    "Hacker News": 1.0,
+    "36氪": 1.0,
+    "虎嗅": 1.0,
+    "IT之家": 0.8,
+    "少数派": 0.8,
+    "爱范儿": 0.8
+  }
+}

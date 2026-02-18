@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+*.so
+.env
+.env.local
+*.log
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+tmp/
+*.tmp
+daily-ai-news.md
+generate-rss-news_副本.py
