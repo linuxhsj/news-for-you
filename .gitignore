@@ -14,4 +14,4 @@ __pycache__/
 tmp/
 *.tmp
 daily-ai-news.md
-generate-rss-news_副本.py
+launchagent.plist
