@@ -80,6 +80,72 @@ Create `config.json` to customize:
 }
 ```
 
+### Switching to Other News Domains
+
+To aggregate news from other domains (e.g., finance, sports, entertainment), simply modify `config.json`:
+
+1. **Change `sources`**: Replace RSS feed URLs with your target domain sources
+2. **Update `include_keywords`**: Add relevant keywords for your domain
+3. **Update `exclude_keywords`**: Filter out unwanted content
+4. **Update `hot_keywords`**: Keywords that indicate important news in your domain
+
+Example for Finance News:
+
+```json
+{
+  "sources": {
+    "Bloomberg": "https://www.bloomberg.com/feed/podcast/bloomberg-technology.xml",
+    "Reuters": "https://www.reutersagency.com/feed/",
+    "WSJ": "https://feeds.a.dj.com/rss/RSSMarketsMain.xml"
+  },
+  "include_keywords": ["stock", "market", "investment", "finance", "trading"],
+  "exclude_keywords": ["celebrity", "entertainment"],
+  "hot_keywords": ["IPO", "merger", "acquisition", "earnings"]
+}
+```
+
+### Deployment Guide
+
+#### Step 1: Configure Feishu Push
+
+**Option A: Webhook (Recommended)**
+
+1. Create a bot in your Feishu group
+2. Get the webhook URL
+3. Add to `.env`:
+   ```
+   FEISHU_WEBHOOK=https://open.feishu.cn/open-apis/bot/v2/hook/your-token
+   ```
+
+**Option B: openclaw CLI**
+
+1. Install openclaw: `npm install -g openclaw`
+2. Configure Feishu credentials in openclaw
+3. Add to `.env`:
+   ```
+   FEISHU_TARGET_ID=oc_xxxxxxxxxxxxxxxxxxxxxxxx
+   ```
+
+#### Step 2: Set Up Scheduled Task
+
+```bash
+# Edit crontab
+crontab -e
+
+# Add scheduled task (run at 8 AM daily)
+0 8 * * * cd /path/to/news && ./send-news-to-feishu.sh >> /tmp/news-cron.log 2>&1
+```
+
+#### Step 3: Verify
+
+```bash
+# Manual test
+./send-news-to-feishu.sh
+
+# Check log
+cat /tmp/news-cron.log
+```
+
 ### Environment Variables
 
 Copy `.env.example` to `.env` and configure:
@@ -94,15 +160,6 @@ cp .env.example .env
 | `RSS_INSECURE_SSL` | Set to `1` to disable SSL verification |
 | `FEISHU_WEBHOOK` | Feishu bot webhook URL |
 | `FEISHU_TARGET_ID` | Feishu group ID (when using openclaw CLI) |
-
-### Scheduled Tasks
-
-Use crontab to schedule automatic pushes:
-
-```bash
-# Run every day at 8 AM
-0 8 * * * cd /path/to/news && ./send-news-to-feishu.sh
-```
 
 ### Files
 
@@ -200,6 +257,72 @@ python3 generate-rss-news.py --max-items 15 --hours 48 --output /tmp/news.md
 }
 ```
 
+### 切换到其他领域新闻
+
+如需聚合其他领域的新闻（如财经、体育、娱乐等），只需修改 `config.json`：
+
+1. **修改 `sources`**: 替换为目标领域的 RSS 源地址
+2. **更新 `include_keywords`**: 添加该领域的相关关键词
+3. **更新 `exclude_keywords`**: 过滤不需要的内容
+4. **更新 `hot_keywords`**: 该领域重要新闻的关键词
+
+示例 - 财经新闻配置：
+
+```json
+{
+  "sources": {
+    "财新网": "https://rsshub.app/caixin/finance",
+    "华尔街见闻": "https://rsshub.app/wallstreetcn/news/global",
+    "东方财富": "https://rsshub.app/eastmoney/report/strategyreport"
+  },
+  "include_keywords": ["股票", "基金", "投资", "财经", "金融", "市场"],
+  "exclude_keywords": ["娱乐", "八卦", "明星"],
+  "hot_keywords": ["IPO", "并购", "财报", "降息", "加息"]
+}
+```
+
+### 部署指南
+
+#### 步骤 1：配置飞书推送
+
+**方式 A：Webhook（推荐）**
+
+1. 在飞书群中创建机器人
+2. 获取 Webhook 地址
+3. 添加到 `.env` 文件：
+   ```
+   FEISHU_WEBHOOK=https://open.feishu.cn/open-apis/bot/v2/hook/your-token
+   ```
+
+**方式 B：openclaw CLI**
+
+1. 安装 openclaw：`npm install -g openclaw`
+2. 在 openclaw 中配置飞书凭证
+3. 添加到 `.env` 文件：
+   ```
+   FEISHU_TARGET_ID=oc_xxxxxxxxxxxxxxxxxxxxxxxx
+   ```
+
+#### 步骤 2：设置定时任务
+
+```bash
+# 编辑 crontab
+crontab -e
+
+# 添加定时任务（每天早上 8 点运行）
+0 8 * * * cd /path/to/news && ./send-news-to-feishu.sh >> /tmp/news-cron.log 2>&1
+```
+
+#### 步骤 3：验证
+
+```bash
+# 手动测试
+./send-news-to-feishu.sh
+
+# 查看日志
+cat /tmp/news-cron.log
+```
+
 ### 环境变量
 
 复制 `.env.example` 为 `.env` 并配置：
@@ -214,15 +337,6 @@ cp .env.example .env
 | `RSS_INSECURE_SSL` | 设为 `1` 禁用 SSL 校验 |
 | `FEISHU_WEBHOOK` | 飞书机器人 Webhook 地址 |
 | `FEISHU_TARGET_ID` | 飞书群 ID（使用 openclaw CLI 时） |
-
-### 定时任务
-
-使用 crontab 设置定时推送：
-
-```bash
-# 每天早上 8 点运行
-0 8 * * * cd /path/to/news && ./send-news-to-feishu.sh
-```
 
 ### 文件说明
 
